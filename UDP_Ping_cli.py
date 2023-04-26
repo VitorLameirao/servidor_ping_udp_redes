@@ -25,27 +25,27 @@ while seqNum < 10:
 	seqNum += 1
 	# Format the message to be sent
 	data = "Ping " + str(seqNum) + " " + time.asctime()
-
 	try:
-	# Sent time
+		# Sent time
 		RTTs = time.time()  #time in seconds
-	# Send the UDP packet with the ping message
-	#/**/ /* 2. Envia os dados para o servidor */
+		# Send the UDP packet with the ping message
+		#/**/ /* 2. Envia os dados para o servidor */
 		client_socket.sendto(data.encode(), (host, port))
 
-	# Receive the server response
-	#/**/ /* 3. Recebe o reply do servidor */
+		# Receive the server response
+		#/**/ /* 3. Recebe o reply do servidor */
 
-	message, address = client_socket.recvfrom(1024)
-    	print("Mensagem recebida: ", message.decode())
+		message, address = client_socket.recvfrom(1024)
+		print("Mensagem recebida: ", message.decode())
 
-	# Received time
+		# Received time
 		RTTr = time.time()
-	# Display the server response as an output
+		# Display the server response as an output
 		print("Reply from " + address[0] + ": " + message.decode())       
-	# Round trip time is the difference between sent and received time
-	#/**/ /* 4. Apresenta o RTT na tela */
+		# Round trip time is the difference between sent and received time
+		#/**/ /* 4. Apresenta o RTT na tela */
 		print("RTT: ", RTTr - RTTs)
+	
 	except:
 		# Server does not respond
 	        # Assume the packet is lost
